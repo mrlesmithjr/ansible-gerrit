@@ -85,6 +85,16 @@
   notify: restart gerrit
   with_items: gerrit_account_info
 
+- name: install_gerrit | configuring gerrit secure settings
+  template:
+    src: secure.config.j2
+    dest: "{{ gerrit_site_dir }}/etc/secure.config"
+    owner: "{{ item.user }}"
+    group: "{{ item.group }}"
+    mode: 0600
+  notify: restart gerrit
+  with_items: gerrit_account_info
+
 - name: install_gerrit | initializing gerrit
   sudo_user: "{{ item.user }}"
   command: "java -jar {{ gerrit_install_dir }}/gerrit.war init --batch --no-auto-start -d {{ gerrit_site_dir }}"
