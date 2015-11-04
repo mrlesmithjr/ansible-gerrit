@@ -56,12 +56,30 @@ None
 
 Example Playbook
 ----------------
-
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+````
+---
+- name: Installs Gerrit Code Review
+  hosts: gerrit-servers
+  sudo: true
+  vars:
+    - gerrit_db_info:
+#        - host: localhost
+#          type: h2
+#          db: db/ReviewDB
+#          user: gerrit
+#          pass: gerrit
+        - host: localhost
+          type: mysql
+          db: reviewdb
+          user: gerrit
+          pass: gerrit
+    - install_mysql: true
+  roles:
+    - ansible-apache2
+    - { role: ansible-mariadb-mysql, when: install_mysql is defined and install_mysql }
+    - ansible-gerrit
+  tasks:
+````
 
 Notes
 -----
