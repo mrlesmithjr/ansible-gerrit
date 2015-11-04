@@ -143,6 +143,7 @@
     dest: "{{ gerrit_site_dir }}/plugins/{{ item.name }}"
   notify: restart gerrit
   with_items: gerrit_plugins
+  when: gerrit_install_plugins is defined and gerrit_install_plugins
 
 - name: install_gerrit | validating permissions on gerrit plugins
   file:

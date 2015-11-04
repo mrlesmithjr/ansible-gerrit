@@ -24,6 +24,7 @@ gerrit_dl_info:
 gerrit_gitweb_integration: false  #defines is gerrit should be integrated with gitweb...gitweb is not controlled via gerrit using this method...
 gerrit_install_plugins: []
 gerrit_install_dir: /opt/gerrit
+gerrit_install_plugins: false  #setting to false for now until plugin install method works...
 gerrit_java_home: /usr/lib/jvm/java-7-openjdk-amd64/jre
 gerrit_mysql_connector_file: mysql-connector-java-5.1.21.jar
 gerrit_mysql_connector_url: http://repo2.maven.org/maven2/mysql/mysql-connector-java/5.1.21
