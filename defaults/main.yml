@@ -14,6 +14,7 @@ gerrit_db_info:
 gerrit_dl_info:
   - url: https://www.gerritcodereview.com/download
     filename: 'gerrit-{{ gerrit_version }}.war'
+    sha256sum: cb1794ccdf22da4e0ba5a431b832578017bbe53152ce028f46d2ebbb611705aa
 gerrit_install_plugins: []
 gerrit_install_dir: /opt/gerrit
 gerrit_service_name: gerrit
