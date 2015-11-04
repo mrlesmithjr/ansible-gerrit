@@ -11,6 +11,11 @@ gerrit_db_info:
     db: db/ReviewDB
     user: gerrit
     pass: gerrit
+#  - host: localhost
+#    type: mysql
+#    db: reviewdb
+#    user: gerrit
+#    pass: gerrit
 gerrit_dl_info:
   - url: https://www.gerritcodereview.com/download
     filename: 'gerrit-{{ gerrit_version }}.war'
