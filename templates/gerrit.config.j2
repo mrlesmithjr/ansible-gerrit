@@ -1,27 +1,27 @@
 [gerrit]
-        basePath = git
-        canonicalWebUrl = {{ gerrit_canonical_web_url }}
+	basePath = git
+	canonicalWebUrl = http://{{ ansible_hostname }}.{{ pri_domain_name }}:{{ gerrit_http_listen_port }}/
 [database]
 {% for item in gerrit_db_info %}
-        type = {{ item.type }}
-        database = {{ item.db }}
+	type = {{ item.type }}
+	database = {{ item.db }}
+	hostname = {{ item.host }}
+	username = {{ item.user }}
 {% endfor %}
 [index]
-        type = LUCENE
+	type = LUCENE
 [auth]
-        type = {{ gerrit_auth_type }}
+	type = OPENID
 [sendemail]
-        smtpServer = {{ gerrit_smtp_server }}
+	smtpServer = {{ gerrit_smtp_server }}
 [container]
 {% for item in gerrit_account_info %}
-        user = {{ item.user }}
+	user = {{ item.user }}
 {% endfor %}
-        javaHome = /usr/lib/jvm/java-8-openjdk-amd64/jre
+	javaHome = /usr/lib/jvm/java-7-openjdk-amd64/jre
 [sshd]
-        listenAddress = {{ gerrit_sshd_listen_address }}
+	listenAddress = *:{{ gerrit_sshd_listen_port }}
 [httpd]
-        listenUrl = {{ gerrit_httpd_listen_url }}
+	listenUrl = http://*:{{ gerrit_http_listen_port }}/
 [cache]
-        directory = cache
-[plugins]
-        allowRemoteAdmin = {{ gerrit_plugins_allow_remote_admin }}
+	directory = cache

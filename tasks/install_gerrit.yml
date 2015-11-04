@@ -75,15 +75,15 @@
     state: directory
   with_items: gerrit_account_info
 
-#- name: install_gerrit | configuring gerrit
-#  template:
-#    src: gerrit.config.j2
-#    dest: "{{ gerrit_site_dir }}/etc/gerrit.config"
-#    owner: "{{ item.user }}"
-#    group: "{{ item.group }}"
-#    mode: 0644
-#  notify: restart gerrit
-#  with_items: gerrit_account_info
+- name: install_gerrit | configuring gerrit
+  template:
+    src: gerrit.config.j2
+    dest: "{{ gerrit_site_dir }}/etc/gerrit.config"
+    owner: "{{ item.user }}"
+    group: "{{ item.group }}"
+    mode: 0644
+  notify: restart gerrit
+  with_items: gerrit_account_info
 
 - name: install_gerrit | initializing gerrit
   sudo_user: "{{ item.user }}"
@@ -91,6 +91,13 @@
   args:
     creates: "{{ gerrit_site_dir }}/bin/gerrit.sh"
   register: gerrit_initialization
+  with_items: gerrit_account_info
+
+- name: install_gerrit | installing mysql connector
+  get_url:
+    url: "{{ gerrit_mysql_connector_url }}/{{ gerrit_mysql_connector_file }}"
+    dest: "{{ gerrit_site_dir }}/lib/{{ gerrit_mysql_connector_file }}"
+  sudo_user: "{{ item.user }}"
   with_items: gerrit_account_info
 
 - name: install_gerrit | reindexing gerrit

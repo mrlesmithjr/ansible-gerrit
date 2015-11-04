@@ -6,4 +6,5 @@
   with_items:
     - default-jre-headless
     - git
+    - gitweb
     - python-mysqldb
