@@ -25,3 +25,8 @@
 	listenUrl = http://*:{{ gerrit_http_listen_port }}/
 [cache]
 	directory = cache
+{% if gerrit_gitweb_integration is defined and gerrit_gitweb_integration %}
+[gitweb]
+  type = gitweb
+  cgi = /path/to/gitweb/gitweb.cgi
+{% endif %}

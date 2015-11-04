@@ -7,5 +7,6 @@
   when: ansible_os_family == "Debian"
 
 - include: configure_gitweb.yml
+  when: gerrit_gitweb_integration is defined and gerrit_gitweb_integration
 
 - include: install_gerrit.yml
