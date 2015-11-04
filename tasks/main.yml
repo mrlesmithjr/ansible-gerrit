@@ -1,0 +1,9 @@
+---
+# tasks file for ansible-gerrit
+- include: centos.yml
+  when: ansible_os_family == "RedHat"
+
+- include: debian.yml
+  when: ansible_os_family == "Debian"
+
+- include: install_gerrit.yml

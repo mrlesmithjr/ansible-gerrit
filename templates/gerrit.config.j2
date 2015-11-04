@@ -1,0 +1,27 @@
+[gerrit]
+        basePath = git
+        canonicalWebUrl = {{ gerrit_canonical_web_url }}
+[database]
+{% for item in gerrit_db_info %}
+        type = {{ item.type }}
+        database = {{ item.db }}
+{% endfor %}
+[index]
+        type = LUCENE
+[auth]
+        type = {{ gerrit_auth_type }}
+[sendemail]
+        smtpServer = {{ gerrit_smtp_server }}
+[container]
+{% for item in gerrit_account_info %}
+        user = {{ item.user }}
+{% endfor %}
+        javaHome = /usr/lib/jvm/java-8-openjdk-amd64/jre
+[sshd]
+        listenAddress = {{ gerrit_sshd_listen_address }}
+[httpd]
+        listenUrl = {{ gerrit_httpd_listen_url }}
+[cache]
+        directory = cache
+[plugins]
+        allowRemoteAdmin = {{ gerrit_plugins_allow_remote_admin }}

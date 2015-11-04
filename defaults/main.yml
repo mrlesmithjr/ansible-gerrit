@@ -1,0 +1,23 @@
+---
+# defaults file for ansible-gerrit
+gerrit_account_info:
+  - user: gerrit
+    comment: Gerrit User
+    home: '{{ gerrit_site_dir }}'
+    group: gerrit
+gerrit_db_info:
+  - host: localhost
+    type: h2
+    db: db/ReviewDB
+    user: gerrit
+    pass: gerrit
+gerrit_dl_info:
+  - url: https://www.gerritcodereview.com/download
+    filename: 'gerrit-{{ gerrit_version }}.war'
+gerrit_install_plugins: []
+gerrit_install_dir: /opt/gerrit
+gerrit_service_name: gerrit
+gerrit_site_dir: /var/gerrit
+gerrit_smtp_server: 'smtp.{{ pri_domain_name }}'
+gerrit_version: 2.11.4
+pri_domain_name: example.org
