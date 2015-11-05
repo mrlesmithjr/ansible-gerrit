@@ -19,7 +19,7 @@ gerrit_account_info:
     comment: Gerrit User
     home: '{{ gerrit_site_dir }}'
     group: gerrit
-gerrit_auth_type: OPENID  #defines authorization type...OPENID, LDAP...
+gerrit_auth_type: OPENID  #defines authorization type...OPENID, LDAP, LDAP_BIND...
 gerrit_db_info:
   - host: localhost
     type: h2
@@ -38,7 +38,19 @@ gerrit_dl_info:
 gerrit_gitweb_integration: false  #defines is gerrit should be integrated with gitweb...gitweb is not controlled via gerrit using this method...
 gerrit_install_plugins: []
 gerrit_install_dir: /opt/gerrit
+gerrit_install_plugins: false  #setting to false for now until plugin install method works...
 gerrit_java_home: /usr/lib/jvm/java-7-openjdk-amd64/jre
+gerrit_ldap_info:
+  - server: 'ldap://dc01.{{ pri_domain_name }}'
+    accountbase: 'DC=example,DC=org'
+    accountpattern: '(&(objectClass=person)(userPrincipalName=${username}))'
+    accountscope: 'sub'
+    groupbase: 'DC=example,DC=org'
+    accountfullname: 'displayName'
+    accountmemberfield: 'memberOf'
+    accountemailaddress: 'mail'
+    accountsshusername: '${sAMAccountName.toLowerCase}'
+    referral: 'follow'
 gerrit_mysql_connector_file: mysql-connector-java-5.1.21.jar
 gerrit_mysql_connector_url: http://repo2.maven.org/maven2/mysql/mysql-connector-java/5.1.21
 gerrit_plugins:

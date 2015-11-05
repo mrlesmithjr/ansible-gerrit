@@ -28,3 +28,18 @@
 [gitweb]
 	type = gitweb
 	cgi = {{ gitweb_cgi_path }}
+{% if gerrit_auth_type == "LDAP_BIND" %}
+[ldap]
+{%   for item in gerrit_ldap_info %}
+	server = {{ item.server }}
+	accountBase = {{ item.accountbase }}
+	accountPattern = {{ item.accountpattern }}
+	accountScope = {{ item.accountscope }}
+	groupBase = {{ item.groupbase }}
+	accountFullName = {{ item.accountfullname }}
+	accountMemberField = {{ item.accountmemberfield }}
+	accountEmailAddress = {{ item.accountemailaddress }}
+	accountSshUserName = {{ item.accountsshusername }}
+	referral = {{ item.referral }}
+	{%   endfor %}
+	{% endif %}
