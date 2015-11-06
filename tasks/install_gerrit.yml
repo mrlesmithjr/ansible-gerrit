@@ -97,7 +97,7 @@
 
 - name: install_gerrit | initializing gerrit
   sudo_user: "{{ item.user }}"
-  command: "java -jar {{ gerrit_install_dir }}/gerrit.war init --batch --no-auto-start -d {{ gerrit_site_dir }}"
+  command: "{{ gerrit_init }}"
   args:
     creates: "{{ gerrit_site_dir }}/bin/gerrit.sh"
   register: gerrit_initialization
