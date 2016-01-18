@@ -6,14 +6,14 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(2) do |config|
-  config.vm.define "owncloud" do |owncloud|
-    owncloud.vm.box = "mrlesmithjr/trusty64"
-    owncloud.vm.hostname = "owncloud"
+  config.vm.define "gerrit" do |gerrit|
+    gerrit.vm.box = "mrlesmithjr/trusty64"
+    gerrit.vm.hostname = "gerrit"
 
-    owncloud.vm.network :private_network, ip: "192.168.202.201"
-    owncloud.vm.network "forwarded_port", guest: 80, host: 8080
+    gerrit.vm.network :private_network, ip: "192.168.202.201"
+    gerrit.vm.network "forwarded_port", guest: 80, host: 8080
 
-    owncloud.vm.provider "virtualbox" do |vb|
+    gerrit.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
     end
   end
