@@ -5,8 +5,27 @@ Installs and configures Gerrit Code Review...https://www.gerritcodereview.com/
 
 Requirements
 ------------
+Install all Ansible role requirements.
+````
+sudo ansible-galaxy install -r requirements.yml -f
+````
 
-None
+Vagrant
+-------
+Spin up Environment under Vagrant to test.
+````
+vagrant up
+````
+
+Usage
+-----
+
+###### Non-Vagrant
+Login to WebUI using defined owncloud_admin_user and owncloud_admin_pass vars (http://iporhostname:8080)
+
+###### Vagrant
+Login to WebUI using defined owncloud_admin_user and owncloud_admin_pass vars (http://127.0.0.1:8080)
+
 
 Role Variables
 --------------
