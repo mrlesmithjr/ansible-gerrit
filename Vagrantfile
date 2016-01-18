@@ -11,7 +11,7 @@ Vagrant.configure(2) do |config|
     gerrit.vm.hostname = "gerrit"
 
     gerrit.vm.network :private_network, ip: "192.168.202.201"
-    gerrit.vm.network "forwarded_port", guest: 80, host: 8080
+    gerrit.vm.network "forwarded_port", guest: 8080, host: 8080
 
     gerrit.vm.provider "virtualbox" do |vb|
       vb.memory = "1024"
