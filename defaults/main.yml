@@ -24,7 +24,6 @@ gerrit_dl_info:
 gerrit_gitweb_integration: false  #defines is gerrit should be integrated with gitweb...gitweb is not controlled via gerrit using this method...
 #gerrit_init: "java -jar {{ gerrit_install_dir }}/gerrit.war init --batch --no-auto-start -d {{ gerrit_site_dir }}"  #define this instead of the below to not setup plugins.
 gerrit_init: "java -jar {{ gerrit_install_dir }}/gerrit.war init --batch --no-auto-start -d {{ gerrit_site_dir }} --install-plugin reviewnotes --install-plugin replication --install-plugin download-commands --install-plugin singleusergroup --install-plugin commit-message-length-validator"
-gerrit_install_plugins: []
 gerrit_install_dir: /opt/gerrit
 gerrit_install_plugins: false  #setting to false for now until plugin install method works...
 gerrit_java_home: /usr/lib/jvm/java-7-openjdk-amd64/jre
