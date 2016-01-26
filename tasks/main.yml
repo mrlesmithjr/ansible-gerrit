@@ -10,3 +10,7 @@
   when: gerrit_gitweb_integration is defined and gerrit_gitweb_integration
 
 - include: install_gerrit.yml
+
+- include: gerrit_replication.yml
+  when: >
+        gerrit_replication_info.enabled is defined and gerrit_replication_info.enabled

@@ -34,10 +34,11 @@ Role Variables
 ---
 # defaults file for ansible-gerrit
 gerrit_account_info:
-  - user: gerrit
-    comment: Gerrit User
-    home: '{{ gerrit_site_dir }}'
-    group: gerrit
+  name: gerrit  #defines username
+  comment: Gerrit User  #defines username comment
+  home: '{{ gerrit_site_dir }}'  #defines username home directory
+  group: gerrit  #defines usernames groupname
+gerrit_allow_remote_admin: false  #defines if gerrit should allow remote admin capabilities
 gerrit_auth_type: OPENID  #defines authorization type...OPENID, LDAP, LDAP_BIND...
 gerrit_db_info:
   - host: localhost
@@ -55,6 +56,7 @@ gerrit_dl_info:
     filename: 'gerrit-{{ gerrit_version }}.war'
     sha256sum: cb1794ccdf22da4e0ba5a431b832578017bbe53152ce028f46d2ebbb611705aa
 gerrit_gitweb_integration: false  #defines is gerrit should be integrated with gitweb...gitweb is not controlled via gerrit using this method...
+gerrit_http_listen_port: 8080
 #gerrit_init: "java -jar {{ gerrit_install_dir }}/gerrit.war init --batch --no-auto-start -d {{ gerrit_site_dir }}"  #define this instead of the below to not setup plugins.
 gerrit_init: "java -jar {{ gerrit_install_dir }}/gerrit.war init --batch --no-auto-start -d {{ gerrit_site_dir }} --install-plugin reviewnotes --install-plugin replication --install-plugin download-commands --install-plugin singleusergroup --install-plugin commit-message-length-validator"
 gerrit_install_dir: /opt/gerrit
@@ -88,13 +90,23 @@ gerrit_plugins:
     name: reviewnotes.jar
   - url: https://storage.cloud.google.com/gerritcodereview-plugins/plugins/master/singleusergroup
     name: singleusergroup.jar
+gerrit_replication_info:
+  enabled: false  #defines if replication should be enabled or not
+  name: 'gitlab'  #define name to assign to replication definition
+  owner: 'infra'  #define username or groupname...if collaborating use groupname
+  url: 'git@gitlab.{{ pri_domain_name }}:{{ gerrit_replication_info.owner }}/${name}.git'  #define remote url
+  timeout: '30'  #define the replication timeout
+  threads: '3'  #defines the number of threads to allocate to replication
+  authgroup: 'Gitlab Replication'  #define the gerrit group to execute replication as..This group needs to be created in gerrit as well. and perms defined as below.
+     ##Group Name: Gitlab Replication
+     ##Gitlab Replication denied read to refs/* in all projects
+     ##Gitlab Replication allowed read to refs/* in in Project nameofproject (ex. test-replication)
 gerrit_service_name: gerrit
 gerrit_site_dir: /var/gerrit
 gerrit_smtp_server: 'smtp.{{ pri_domain_name }}'
 gerrit_sshd_listen_port: 29418
 gerrit_vagrant_install: false  #defines if deploying within a Vagrant environment
 gerrit_version: 2.11.4
-gerrit_http_listen_port: 8080
 gitweb_cgi_path: /usr/share/gitweb/gitweb.cgi
 pri_domain_name: example.org
 ````
