@@ -48,3 +48,7 @@
 	referral = {{ item.referral }}
 	{%   endfor %}
 	{% endif %}
+[plugins]
+{% if gerrit_allow_remote_admin is defined and gerrit_allow_remote_admin %}
+    allowRemoteAdmin = true
+{% endif %}
