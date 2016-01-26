@@ -57,8 +57,8 @@ gerrit_plugins:
     name: reviewnotes.jar
   - url: https://storage.cloud.google.com/gerritcodereview-plugins/plugins/master/singleusergroup
     name: singleusergroup.jar
+gerrit_replication_enabled: false  #defines if replication should be enabled or not
 gerrit_replication_info:
-  enabled: false  #defines if replication should be enabled or not
   name: 'gitlab'  #define name to assign to replication definition
   owner: 'infra'  #define username or groupname...if collaborating use groupname
   url: 'git@gitlab.{{ pri_domain_name }}:{{ gerrit_replication_info.owner }}'  #define remote url

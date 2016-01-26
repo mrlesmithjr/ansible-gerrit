@@ -12,5 +12,4 @@
 - include: install_gerrit.yml
 
 - include: gerrit_replication.yml
-  when: >
-        gerrit_replication_info.enabled is defined and gerrit_replication_info.enabled
+  when: gerrit_replication_enabled is defined and gerrit_replication_enabled
