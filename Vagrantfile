@@ -7,7 +7,7 @@
 # you're doing.
 Vagrant.configure(2) do |config|
   config.vm.define "gerrit" do |gerrit|
-    gerrit.vm.box = "mrlesmithjr/trusty64"
+    gerrit.vm.box = "ubuntu/trusty64"
     gerrit.vm.hostname = "gerrit"
 
     gerrit.vm.network :private_network, ip: "192.168.202.201"
