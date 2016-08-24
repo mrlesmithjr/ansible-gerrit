@@ -17,5 +17,8 @@ Vagrant.configure(2) do |config|
       vb.memory = "1024"
     end
   end
-  config.vm.provision :shell, path: "provision.sh", keep_color: "true"
+  config.vm.provision :ansible do |ansible|
+    ansible.playbook = "playbook.yml"
+    ansible.galaxy_role_file = "requirements.yml"
+  end
 end
