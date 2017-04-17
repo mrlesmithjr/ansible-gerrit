@@ -11,7 +11,7 @@
   get_url:
     url: "{{ item.url }}/{{ item.filename }}"
     dest: "{{ gerrit_install_dir }}/{{ item.filename }}"
-    sha256sum: "{{ item.sha256sum }}"
+    # sha256sum: "{{ item.sha256sum }}"
     validate_certs: false
   with_items: '{{ gerrit_dl_info }}'
 
